@@ -10,32 +10,40 @@
   </head>
 
   <body>
+    <header>
+      <!--後（bootstrap入れた後）でクラス名を入れる-->
+      <div class ="container">
+        <%= link_to "Bookers", root_path %>
 
-    <!--2章で追加。ログアウト機能の実装-->
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      </li>
+        <div>
+          <ul>
+            <!--2章で追加。ログアウト機能の実装と画面の変化-->
+            <% if user_signed_in? %>
+            <!--ログインしているとき-->
+              <p>あとでhome.users.booksページのリンクを設定する</p>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              </li>
 
-
-
-    <% else %>
-
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
-      <!--あとでaboutページを入れる-->
-      <!--<li>-->
-      <!--  < %= link_to "about", ？root_path %>-->
-      <!--</li>-->
-      <li>
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
-
+            <% else %>
+            <!--ログインしていないとき-->
+              <li>
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "about", home_about_path %>
+              </li>
+              <li>
+                <%= link_to "sign up", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "login", new_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
 
 
     <%= yield %>
