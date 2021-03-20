@@ -1,0 +1,35 @@
+<!--Booksのindex-->
+
+<!--ここからはいずれ部分テンプレートで使いますユーザー表示と投稿ページ-->
+<p>ユーザー情報を入れる</p>
+<br>
+<p>ユーザーエディットページリンク入れる</p>
+<br>
+
+<h1>New books</h1>
+<%= form_with model: @book,url: books_path , local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>opinion</h4>
+  <%= f.text_area :opinion %>
+  <br>
+  <%= f.submit 'create book' %>
+
+<% end %>
+<!--部分テンプレートここまで-->
+
+
+<p>↓↓この間が投稿一覧</p>
+
+<h1>Books</h1>
+<% @books.each do |book| %>
+  <div>
+    <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
+    <span>
+      <%= link_to book.title, "/books/#{book.id}" %>
+    </span>
+    <p>意見：<%= book.opinion %></p>
+  </div>
+<% end %>
+
+<p>ここまで投稿一覧</p>
