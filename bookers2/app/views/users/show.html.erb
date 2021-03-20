@@ -1,0 +1,34 @@
+<!--usersのshowページ-->
+
+<div class="profile-container">
+  <%= image_tag('no_image.jpg') %>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.name %></th>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<p>↓↓この間が投稿一覧</p>
+
+<h1>Books</h1>
+<% @books.each do |book| %>
+  <div>
+    <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
+    <span>
+      <%= link_to book.title, "/books/#{book.id}" %>
+    </span>
+    <p>意見：<%= book.opinion %></p>
+  </div>
+<% end %>
+
+<p>ここまで投稿一覧</p>

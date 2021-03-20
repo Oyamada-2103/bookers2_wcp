@@ -22,6 +22,9 @@
             <!--ログインしているとき-->
               <p>あとでhome.users.booksページのリンクを設定する</p>
               <li>
+                <%= link_to "Book", books_path %>
+              </li>
+              <li>
                 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
               </li>
 
