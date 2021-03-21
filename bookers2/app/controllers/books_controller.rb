@@ -6,19 +6,30 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    # @user = current_user
+    # @user_id =@book.user.find(params[:id])
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = 1 #（要編集）このコマンドがないと投稿しても反映されない
+    # @book.user_id = current_user.id
     @books = Book.all
-    @book.save
-    redirect_to books_path
+    if @book.save
+      redirect_to books_path, notice:'Book was successfully created.'
+    else
+      render :index
+    end
   end
 
   def show
     # @books = Book.all
     @book = Book.find(params[:id])
+
+    # @user = User.find(params[:id])
+    # @books = @user.books.all
+
+
   end
 
   def destroy

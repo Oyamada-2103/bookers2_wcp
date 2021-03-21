@@ -1,9 +1,25 @@
 <!--Booksのindex-->
 
 <!--ここからはいずれ部分テンプレートで使いますユーザー表示と投稿ページ-->
+
+<p id="notice">
+ <%= notice %>
+</p>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <p>ユーザー情報を入れる</p>
 <br>
-<p>ユーザーエディットページリンク入れる</p>
+
+<!--エラーメッセージ入れたら上手く動かなくなった-->
+<%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+<%= current_user.name %>
+<%= link_to "Edit", "/users/#{current_user.id}/edit" %>
 <br>
 
 <h1>New books</h1>
@@ -24,10 +40,9 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
   <div>
+    <%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
     <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
-    <span>
-      <%= link_to book.title, "/books/#{book.id}" %>
-    </span>
+    <%= link_to book.title, "/books/#{book.id}" %>
     <p>意見：<%= book.opinion %></p>
   </div>
 <% end %>

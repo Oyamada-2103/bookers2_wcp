@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,41 +14,51 @@
 
   <body>
     <header>
-      <!--後（bootstrap入れた後）でクラス名を入れる-->
-      <div class ="container">
-        <%= link_to "Bookers", root_path %>
+      <nav class ="navbar navbar-expand-md navbar-light">
+        <div class ="container">
+          <%= link_to "Bookers", root_path %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div>
-          <ul>
-            <!--2章で追加。ログアウト機能の実装と画面の変化-->
-            <% if user_signed_in? %>
-            <!--ログインしているとき-->
-              <p>あとでhome.users.booksページのリンクを設定する</p>
-              <li>
-                <%= link_to "Book", books_path %>
-              </li>
-              <li>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              </li>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <!--2章で追加。ログアウト機能の実装と画面の変化-->
+              <% if user_signed_in? %>
+              <!--ログインしているとき-->
 
-            <% else %>
-            <!--ログインしていないとき-->
-              <li>
-                <%= link_to "Home", root_path %>
-              </li>
-              <li>
-                <%= link_to "about", home_about_path %>
-              </li>
-              <li>
-                <%= link_to "sign up", new_user_registration_path %>
-              </li>
-              <li>
-                <%= link_to "login", new_user_session_path %>
-              </li>
-            <% end %>
-          </ul>
+                <li>
+                  <%= link_to " Home ", "/users/#{current_user.id}/" %>
+                </li>
+                <li>
+                  <%= link_to " Users ", "/users" %>
+                </li>
+                <li>
+                  <%= link_to " Book ", books_path %>
+                </li>
+                <li>
+                  <%= link_to " Logout", destroy_user_session_path, method: :delete %>
+                </li>
+
+              <% else %>
+              <!--ログインしていないとき-->
+                <li>
+                  <%= link_to " Home ", root_path %>
+                </li>
+                <li>
+                  <%= link_to " about ", home_about_path %>
+                </li>
+                <li>
+                  <%= link_to " sign up ", new_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to " login ", new_user_session_path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
 

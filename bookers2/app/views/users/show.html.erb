@@ -1,21 +1,9 @@
 <!--usersのshowページ-->
 
-<div class="profile-container">
-  <%= image_tag('no_image.jpg') %>
-  <table class="table">
-    <tbody>
-      <tr></tr>
-      <tr>
-        <th>name</th>
-        <th><%= @user.name %></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><%= @user.name %></th>
-        </tr>
-    </tbody>
-  </table>
-</div>
+  <%= link_to "User Edit", "/users/#{@user.id}/edit" %>
+
+
+  <!--< %=link_to "user edit" edit_user_path %>-->
 
 
 <p>↓↓この間が投稿一覧</p>
