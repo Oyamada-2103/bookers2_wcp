@@ -6,13 +6,13 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
-    # @user = current_user
+    # @user = User.find(params[:id])
     # @user_id =@book.user.find(params[:id])
   end
 
   def create
     @book = Book.new(book_params)
-    @book.user_id = 1 #（要編集）このコマンドがないと投稿しても反映されない
+    @book.user_id = current_user.id #（要編集）このコマンドがないと投稿しても反映されない
     # @book.user_id = current_user.id
     @books = Book.all
     if @book.save

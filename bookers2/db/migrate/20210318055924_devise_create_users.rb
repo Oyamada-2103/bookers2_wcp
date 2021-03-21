@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       # ２章で追加。名前を登録
       t.string :name
+      # t.text :introduction
 
       t.timestamps null: false
     end

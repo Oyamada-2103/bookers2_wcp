@@ -11,6 +11,7 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
   <div>
+    <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
     <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
     <span>
       <%= link_to book.title, "/books/#{book.id}" %>
