@@ -10,13 +10,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <!--<script src="https://kit.fontawesome.com/31168af8af.js"></script>-->
+
   </head>
+
+
 
   <body>
     <header>
-      <nav class ="navbar navbar-expand-md navbar-light">
+      <nav class ="navbar navbar-expand-lg  navbar-dark bg-dark">
         <div class ="container">
-          <%= link_to "Bookers", root_path %>
+
+          <!--headerの左側-->
+          <%= link_to "Bookers", root_path, class:"navbar-brand" %>
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,33 +35,60 @@
               <!--2章で追加。ログアウト機能の実装と画面の変化-->
               <% if user_signed_in? %>
               <!--ログインしているとき-->
-
-                <li>
-                  <%= link_to " Home ", "/users/#{current_user.id}/" %>
-                </li>
-                <li>
-                  <%= link_to " Users ", "/users" %>
-                </li>
-                <li>
-                  <%= link_to " Book ", books_path %>
-                </li>
-                <li>
-                  <%= link_to " Logout", destroy_user_session_path, method: :delete %>
-                </li>
+                  <li class="nav-item">
+                    <%= link_to  "/users/#{current_user.id}", class:"nav-link active" , method: :get do%>
+                      <i class="fas fa-home"></i>Home
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to  "/users", class:"nav-link active" , method: :get do%>
+                      <i class="fas fa-users"></i>Users
+                    <% end %>
+                    <!--<a class="nav-link active" href="/users"><i class="fas fa-users"></i>Users</a>-->
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "/books", class:"nav-link active" , method: :get do %>
+                      <i class="fas fa-book-open"></i>Books
+                    <% end %>
+                    <!--<a class="nav-link active" href="/books"><i class="fas fa-book-open"></i>Book</a>-->
+                  </li>
+                  <li class="nav-item">
+                    <!--<a class="nav-link" href="users/sign_out">Logout</a>-->
+                    <!--<a class="nav-link" href="destroy_user_session_path, method: :delete">Logout</a>-->
+                    <!--< %= link_to " Logout", destroy_user_session_path, method: :delete, class:"nav-link active" %>-->
+                    <!--下記を合わせたい-->
+                    <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link active" do %>
+                      <i class="fas fa-sign-out-alt"></i>Logout
+                    <% end %>
+                  </li>
 
               <% else %>
               <!--ログインしていないとき-->
-                <li>
-                  <%= link_to " Home ", root_path %>
+                <li class="nav-item">
+                  <%= link_to "/", class:"nav-link active", method: :get do%>
+                      <i class="fas fa-home"></i>Home
+                    <% end %>
+                  <!--<a class="nav-link active" href="/"><i class="fas fa-home-lg"></i>Home</a>-->
                 </li>
-                <li>
-                  <%= link_to " about ", home_about_path %>
+                <li class="nav-item">
+                  <%= link_to  "/home/about", class:"nav-link active", method: :get do %>
+                      <i class="fas fa-link"></i>About
+                    <% end %>
+                  <!--<a class="nav-link active" href="/home/about"><i class="fas fa-link"></i>About</a>-->
                 </li>
-                <li>
-                  <%= link_to " sign up ", new_user_registration_path %>
+                <li class="nav-item">
+                  <%= link_to "/users/sign_up", class:"nav-link active" , method: :get do %>
+                      <i class="fas fa-user-plus"></i></i>sign up
+                    <% end %>
+                  <!--<a class="nav-link active" href="/users/sign_up"><i class="fas fa-user-plus"></i>sign up</a>-->
+                  <!--< %= link_to " sign up ", new_user_registration_path %>-->
                 </li>
-                <li>
-                  <%= link_to " login ", new_user_session_path %>
+                <li class="nav-item">
+                  <%= link_to "/users/sign_in", class:"nav-link active", method: :get do %>
+                      <i class="fas fa-sign-in-alt"></i>login
+                    <% end %>
+                  <!--<a class="nav-link active" href="/users/sign_in"><i class="fas fa-sign-in-alt"></i>login</a>-->
+                  <!--< %= link_to " login ", new_user_session_path %>-->
                 </li>
               <% end %>
             </ul>
@@ -65,3 +101,14 @@
     <%= yield %>
   </body>
 </html>
+
+
+<!--<footer>-->
+<!--      <div class="container mt-5">-->
+<!--        <div class="row">-->
+<!--          <div class="mx-auto">-->
+<!--            <p>CopyRight Infratop.inc</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </footer>-->

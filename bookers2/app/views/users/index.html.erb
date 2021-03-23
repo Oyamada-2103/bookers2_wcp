@@ -1,21 +1,82 @@
 <!--userのindex-->
 
-<h1>Users</h1>
+<p id="notice">
+ <%= notice %>
+</p>
 
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-        <% @users.each do |user| %>
-        <tr>
-          <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
-          <td><%= user.name %></td>
-          <td><%= link_to "Show", "/users/#{user.id}" %></td>
-        </tr>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+
+
+       <!--user infoの部分テンプレート-->
+      <%= render 'books/current_user_info', book: @book %>
+
+      <!--user editリンク-->
+      <div class="row">
+        <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block", method: :get do %>
+        <i class="fas fa-user-cog"></i>
         <% end %>
-    </tbody>
-  </table>
+      </div>
+
+      <!--newbookの部分テンプレート-->
+      <%= render 'books/new_book', book: @book %>
+    </div>
+
+
+
+
+
+<!--ここから投稿一覧-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+        <table class="table table-hover table-inverse">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+              <tr>
+                <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
+                <td><%= user.name %></td>
+                <td><%= link_to "Show", "/users/#{user.id}" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<h1>Users</h1>-->
+
+    <!--<thead>-->
+    <!--  <tr>-->
+    <!--    <th>image</th>-->
+    <!--    <th>name</th>-->
+    <!--    <th colspan="3"></th>-->
+    <!--  </tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--    < % @users.each do |user| %>-->
+    <!--    <tr>-->
+  <!--        <td>< %= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>-->
+  <!--        <td>< %= user.name %></td>-->
+  <!--        <td>< %= link_to "Show", "/users/#{user.id}" %></td>-->
+  <!--      </tr>-->
+  <!--      < % end %>-->
+  <!--  </tbody>-->
+  <!--</table>-->

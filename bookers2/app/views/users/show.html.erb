@@ -1,23 +1,93 @@
 <!--usersのshowページ-->
 
-  <%= link_to "User Edit", "/users/#{@user.id}/edit" %>
+<p id="notice">
+ <%= notice %>
+</p>
 
-
-  <!--< %=link_to "user edit" edit_user_path %>-->
-
-
-<p>↓↓この間が投稿一覧</p>
-
-<h1>Books</h1>
-<% @books.each do |book| %>
-  <div>
-    <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
-    <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
-    <span>
-      <%= link_to book.title, "/books/#{book.id}" %>
-    </span>
-    <p>意見：<%= book.opinion %></p>
-  </div>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
 <% end %>
 
-<p>ここまで投稿一覧</p>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>User Info</h1>
+      <br>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+
+      <table class="table">
+        <tbody>
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+
+      
+
+        <!--user editリンク-->
+      <div class="row">
+        <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block", method: :get do %>
+        <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
+
+
+      <!--newbookの部分テンプレート-->
+      <%= render 'books/new_book', book: @book %>
+    </div>
+
+
+
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+            <thead>
+              <tr>
+                <th colspan="3"></th>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @books.each do |book| %>
+              <tr>
+                <td>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
+                </td>
+                <td><%= link_to book.title, "/books/#{book.id}" %></td>
+                <td>Opinion：<%= book.body %></td>
+              </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+<!--<h1>Books</h1>-->
+<!--< % @books.each do |book| %>-->
+<!--  <div>-->
+<!--    <td>< %= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>-->
+    <!--<p>投稿ユーザー画像：< %= image_tag('no_image.jpg') %></p>-->
+<!--    <span>-->
+<!--      < %= link_to book.title, "/books/#{book.id}" %>-->
+<!--    </span>-->
+<!--    <p>意見：< %= book.body %></p>-->
+<!--  </div>-->
+<!--< % end %>-->
+
+<!--<p>ここまで投稿一覧</p>-->

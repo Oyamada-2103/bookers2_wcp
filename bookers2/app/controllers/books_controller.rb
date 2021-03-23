@@ -6,6 +6,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    
     # @user = User.find(params[:id])
     # @user_id =@book.user.find(params[:id])
   end
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
   def show
     # @books = Book.all
     @book = Book.find(params[:id])
-
+    
     # @user = User.find(params[:id])
     # @books = @user.books.all
 
@@ -35,7 +36,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])  # データ（レコード）を1件取得
     @book.destroy  # データ（レコード）を削除
-    redirect_to books_path  # 投稿一覧画面へリダイレクト
+    redirect_to books_path, notice:'Book was successfully deleated.'
   end
 
   def edit
@@ -45,13 +46,13 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     @book.update(book_params)
-    redirect_to book_path(@book.id) # @の有無で結果が変わる理由がわからん
+    redirect_to book_path(@book.id), notice:'Book was successfully updated.'
   end
 
   # 投稿データのストロングパラメータ
   private
     def book_params
-      params.require(:book).permit(:title, :opinion)
+      params.require(:book).permit(:title, :body)
     end
 
 
