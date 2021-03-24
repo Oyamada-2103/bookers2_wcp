@@ -1,6 +1,6 @@
 <!--bookのeditページ-->
 
-<h1>Editing book</h1>
+<h1>Editing Book</h1>
 <%= form_with model:@book, url:"/books/#{@book.id}", local:true do |f| %>
   <p>title</p>
     <%= f.text_field :title %>
