@@ -37,14 +37,15 @@
 
         <!--user editリンク-->
       <div class="row">
+        <!--< % if @user == current_user %>-->
+        <!--  < %= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block",method: :get do %>-->
+        <!--  <i class="fas fa-user-cog"></i>-->
+        <!--< % else %>-->
+        <!--  < %= link_to user_path(current_user.id), class:"btn btn-outline-secondary btn-block", method: :get do %>-->
+        <!--  <i class="fas fa-user-cog"></i>-->
+        <!--< % end %>-->
 
-        <% if @user == current_user %>
-          <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block" %>
-        <% else %>
-          <%= link_to user_path(current_user.id), class:"btn btn-outline-secondary btn-block" %>
-        <% end %>
-
-        <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block", method: :get do %>
+        <%= link_to edit_user_path(@user), class:"btn btn-outline-secondary btn-block", method: :get do %>
         <i class="fas fa-user-cog"></i>
         <% end %>
       </div>
@@ -72,7 +73,13 @@
               <% @books.each do |book| %>
               <tr>
                 <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
+                  <%=link_to user_path(@user.id) do %>
+                    <%= attachment_image_tag @user, :profile_image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
+                    <!--< %= attachment_image_tag @book, :image %>-->
+                  <% end %>
+
+
+                  <!--< %= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>-->
                 </td>
                 <td><%= link_to book.title, "/books/#{book.id}" %></td>
                 <td>Opinion：<%= book.body %></td>
