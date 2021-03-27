@@ -1,5 +1,6 @@
 <!--usersのshowページ-->
 
+
 <p id="notice">
  <%= notice %>
 </p>
@@ -36,7 +37,7 @@
 
 
         <!--user editリンク-->
-      <div class="row">
+      <!--<div class="row">-->
         <!--< % if @user == current_user %>-->
         <!--  < %= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block",method: :get do %>-->
         <!--  <i class="fas fa-user-cog"></i>-->
@@ -48,7 +49,7 @@
         <%= link_to edit_user_path(@user), class:"btn btn-outline-secondary btn-block", method: :get do %>
         <i class="fas fa-user-cog"></i>
         <% end %>
-      </div>
+      <!--</div>-->
 
 
       <!--newbookの部分テンプレート-->
@@ -63,7 +64,7 @@
         <table class="table table-hover table-inverse">
             <thead>
               <tr>
-                <th colspan="3"></th>
+
                 <th></th>
                 <th>Title</th>
                 <th>Opinion</th>
@@ -74,7 +75,7 @@
               <tr>
                 <td>
                   <%=link_to user_path(@user.id) do %>
-                    <%= attachment_image_tag @user, :profile_image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
+                    <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
                     <!--< %= attachment_image_tag @book, :image %>-->
                   <% end %>
 
@@ -82,7 +83,7 @@
                   <!--< %= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>-->
                 </td>
                 <td><%= link_to book.title, "/books/#{book.id}" %></td>
-                <td>Opinion：<%= book.body %></td>
+                <td><%= book.body %></td>
               </tr>
               <% end %>
             </tbody>

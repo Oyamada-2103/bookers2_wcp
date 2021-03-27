@@ -20,11 +20,11 @@
       <%= render 'books/current_user_info', book: @book %>
 
       <!--user editリンク-->
-      <div class="row">
+      <!--<div class="row">-->
         <%= link_to edit_user_path(current_user), class:"btn btn-outline-secondary btn-block", method: :get do %>
         <i class="fas fa-user-cog"></i>
         <% end %>
-      </div>
+      <!--</div>-->
 
       <!--newbookの部分テンプレート-->
       <%= render 'books/new_book', book: @book %>
