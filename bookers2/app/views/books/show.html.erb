@@ -63,8 +63,9 @@
               <tr>
                 <td>
                   <%=link_to "/users/#{@bookfind.user_id}" do %>
-                    <%= attachment_image_tag @bookfind.user, :profile_image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
+                    <%= attachment_image_tag @bookfind.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
                     <!--< %= attachment_image_tag @book, :image %>-->
+                    <br>
                     <%= @bookfind.user.name %>
                   <% end %>
                 </td>
